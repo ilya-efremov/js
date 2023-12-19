@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Лаба12</title>
+</head>
+<body>
+<a></a>
+<p>Введите чему равна Х</p>
+<input type="text" id="pole">
+<input type="button" value="Далее" id="button">
+<p id="result">Получаем:</p>
+
+<script>
+function opera(){
+let x = Number(document.getElementById('pole').value);
+document.getElementById('result').innerText = `Получаем: ${3*x+5}`;
+}
+
+function firefox(){
+let x = Number(document.getElementById('pole').value);
+document.getElementById('result').innerText = `Получаем: ${x+3}`;
+}
+
+function chrome(){
+let x = Number(document.getElementById('pole').value);
+document.getElementById('result').innerText = `Получаем: ${x/3+x/5}`;
+}
+
+(function search(){
+let browStr = navigator.userAgent;
+let regexp = /(Opera)|(Firefox)|(Chrome.*Safari\/\d{3}.\d{2}$)/gi;
+let browser = browStr.match(regexp);
+let a = document.getElementsByTagName('a')[0];
+
+if (browser == 'Opera'){
+a.innerText = 'Вы находитесь на сайте: Opera, и поэтому будет вычисляться функция: 3*x+5';
+document.getElementById('button').setAttribute('onclick', 'opera()');
+}
+else if (browser == 'Firefox'){
+a.innerText = 'Вы находитесь на сайте: Firefox, и поэтому будет вычисляться функция: x+3';
+document.getElementById('button').setAttribute('onclick', 'firefox()');
+}
+else if (browser == 'Chrome/119.0.0.0 Safari/537.36'){
+a.innerText = 'Вы находитесь на сайте: Chrome, и поэтому будет вычисляться функция: x/3+x/5';
+document.getElementById('button').setAttribute('onclick', 'chrome()');
+}
+else{
+a.innerText = 'Нет такого браузера!';
+}
+})()
+</script>
+</body>
+</html>
